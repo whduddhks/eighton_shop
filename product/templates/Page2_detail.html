@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -11,21 +12,62 @@
   <title>Small Business - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/small-business.css" rel="stylesheet">
+  <link href="{% static 'css/small-business.css' %}" rel="stylesheet">
   
-<script src="miro.js"></script>
- 
- <script>
-  magnify("myimage", 3);
-  </script>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <style>
   * {box-sizing: border-box;}
 
+  .col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
 .img-magnifier-container {
   position: relative;
 }
@@ -38,7 +80,95 @@
   /*Set the size of the magnifier glass:*/
   width: 100px;
   height: 100px;
-}</style>
+}
+
+
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+</style>
+
+
+
+<script>
+        function magnify(imgID, zoom) {
+          var img, glass, w, h, bw;
+          img = document.getElementById(imgID);
+          /*create magnifier glass:*/
+          glass = document.createElement("DIV");
+          glass.setAttribute("class", "img-magnifier-glass");
+          /*insert magnifier glass:*/
+          img.parentElement.insertBefore(glass, img);
+          /*set background properties for the magnifier glass:*/
+          glass.style.backgroundImage = "url('" + img.src + "')";
+          glass.style.backgroundRepeat = "no-repeat";
+          glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+          bw = 3;
+          w = glass.offsetWidth / 2;
+          h = glass.offsetHeight / 2;
+          /*execute a function when someone moves the magnifier glass over the image:*/
+          glass.addEventListener("mousemove", moveMagnifier);
+          img.addEventListener("mousemove", moveMagnifier);
+          /*and also for touch screens:*/
+          glass.addEventListener("touchmove", moveMagnifier);
+          img.addEventListener("touchmove", moveMagnifier);
+          function moveMagnifier(e) {
+            var pos, x, y;
+            /*prevent any other actions that may occur when moving over the image*/
+            e.preventDefault();
+            /*get the cursor's x and y positions:*/
+            pos = getCursorPos(e);
+            x = pos.x;
+            y = pos.y;
+            /*prevent the magnifier glass from being positioned outside the image:*/
+            if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+            if (x < w / zoom) {x = w / zoom;}
+            if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+            if (y < h / zoom) {y = h / zoom;}
+            /*set the position of the magnifier glass:*/
+            glass.style.left = (x - w) + "px";
+            glass.style.top = (y - h) + "px";
+            /*display what the magnifier glass "sees":*/
+            glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+          }
+          function getCursorPos(e) {
+            var a, x = 0, y = 0;
+            e = e || window.event;
+            /*get the x and y positions of the image:*/
+            a = img.getBoundingClientRect();
+            /*calculate the cursor's x and y coordinates, relative to the image:*/
+            x = e.pageX - a.left;
+            y = e.pageY - a.top;
+            /*consider any page scrolling:*/
+            x = x - window.pageXOffset;
+            y = y - window.pageYOffset;
+            return {x : x, y : y};
+          }
+        }
+        
+        </script>
+
+
 
 </head>
 
@@ -50,7 +180,7 @@
           <a class="text-muted" href="#">8T</a>
         </div>
         <div class="col-4 text-center">
-            <a href="index.html"><img src="lion.png" style="width:50px;height: 50px;"></a>
+            <a href="{% url 'home' %}"><img src="{% static 'lion.png' %}" style="width:50px;height: 50px;"></a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             <a class="text-muted" href="#">
@@ -61,8 +191,8 @@
               My Page
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item btn btn-sm btn-outline-secondary" href="basket.html">shopping basket</a>
-                  <a class="dropdown-item" href="login.html">Log out</a>
+                  <a class="dropdown-item btn btn-sm btn-outline-secondary" href="{% url 'basket'%}">shopping basket</a>
+                  <a class="dropdown-item" href="{% url 'login' %}">Log out</a>
           </div>
       </div>
     </header>
@@ -70,11 +200,11 @@
 
     <div class="nav-scroller py-3 mb-1">
       <nav class="nav d-flex justify-content-center">
-    <a class="p-2 text-muted" href="Page1.html">MAN</a>
-    <a class="p-2 text-muted" href="page2.html">WOMAN</a>
-    <a class="p-2 text-muted" href="page3.html">BAGS</a>
-    <a class="p-2 text-muted" href="page4.html">ACC</a>
-    <a class="p-2 text-muted" href="page5.html">SALE</a>
+    <a class="p-2 text-muted" href="{% url 'pageone' %}">MAN</a>
+    <a class="p-2 text-muted" href="{% url 'pagetwo' %}">WOMAN</a>
+    <a class="p-2 text-muted" href="{% url 'pagethree' %}">BAGS</a>
+    <a class="p-2 text-muted" href="{% url 'pagefour' %}">ACC</a>
+    <a class="p-2 text-muted" href="{% url 'pagefive' %}">SALE</a>
     <div class="dropdown">
             <button style="border: none;" class="p-2 text-muted btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              SUBCULTURE
@@ -86,31 +216,130 @@
       </nav>
     </div>
     <hr></hr>
-  
-  
-
-
-
-    <div class="row">
-        <div class="col-md-6 mb-10" >
-                <div class="img-magnifier-container">
-                  <img id="myimage"  src="머그컵.png" alt="#" width="100%" height="210" >
-                
-            </div>
-          </div>
-        </div>
-
-    <div class="col-md-5 mb-20">
-      <div class="card h-100" style="text-align: center;" >
-        <div class="card-body">
-              <h2 class="card-header">머그컵</a></h2>
-              <p class="card-text">평범한 멋쟁이 사자처럼의<br>굿즈인 머그컵이다.</p>
-              <h3 class="card-"></h3>
-        </div>
+    <div>
+      <div class="col-md-5 mb-500" style="float: right;">
+        <div class="card h-100" style="text-align: center;">
+          <div class="card-body" style="text-align: center;">
+            <h1>텀블러</h1>
+            <hr>
+            <h5>텀블러가 참 좋다</h5>
       </div>
     </div>
+            <hr>
+              <form name="form" method="get">
+                수량 : <input type=hidden name="sell_price" value="5500">
+                <input type="text" name="amount" value="1" size="3" onchange="change();">
+                <input type="button" value=" + " onclick="add();"><input type="button" value=" - " onclick="del();"><br>
+                금액 : <input type="text" name="sum" size="11" readonly value="5500">원
+              </form>
+              <hr>
+              <p><button>구매하기</button></p>
+            </div>
+          <div class="img-magnifier-container">
+            
+              <img id="myimage"  src="{% static '텀블러.png' %}" alt="#" width="400" height="400" >
+         
+         <div>
+            <script>
+                magnify("myimage", 3);
+                </script>
+                
+                <hr></hr>
+          
+      <div class="nav-scroller py-3 mb-1">
+          <nav class="nav d-flex justify-content-center">
+          <a class="p-2 text-muted" href="{% url 'basket' %}">장바구니</a>
+          <a class="p-2 text-muted" href="{% url 'pagetwo' %}">구매하기</a>
+              </nav>
+        </div>
+      </div>
+  </div>
+  
+    
+    <hr></hr>
 
+<div data-spy="scroll" data-target=".navbar" data-offset="50" >
 
+        <nav class="navbar navbar-expand-sm bg-white navbar-black  sticky-top">  
+          <ul class="navbar-nav  ">
+            <li class="nav-item">
+              <a class="nav-link " href="#section1" style="color:salmon;" >&nbsp;&nbsp;&nbsp;상세정보&nbsp;&nbsp;&nbsp;</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section2" style="color:salmon">&nbsp;&nbsp;&nbsp;구매안내&nbsp;&nbsp;&nbsp;</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section3" style="color:salmon">&nbsp;&nbsp;&nbsp;고객후기&nbsp;&nbsp;&nbsp;</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section3" style="color:salmon">&nbsp;&nbsp;&nbsp;상품Q&A&nbsp;&nbsp;&nbsp;</a>
+              </li>
+              
+            </li>
+          </ul>
+        </nav>
         
+        <div id="section1" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+          <h1>상세정보</h1>
+          <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+          <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+        </div>
+        <hr></hr>
+        <div id="section2" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+          <h1>구매안내</h1>
+          <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+          <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+        </div>
+        <hr></hr>
+        <div id="section3" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+          <h1>고객후기</h1>
+          <br>
+          <div class="container">
+              <form action="action_page.php">
+                <div class="row">
+                  
+                </div>
+                <div class="row">
+                 
+                </div>
+                <div class="row">
+                  <div class="col-25">
+                    <label for="country">평점</label>
+                  </div>
+                  <div class="col-75">
+                    <select id="star" name="star">
+                      <option value="australia">★</option>
+                      <option value="canada">★★</option>
+                      <option value="usa">★★★</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-25">
+                    <label for="subject">의견</label>
+                  </div>
+                  <div class="col-75">
+                    <textarea id="subject" name="subject" placeholder="의견을 말씀해주세요" style="height:200px"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <input type="submit" value="물어보기" > 
+                </div>
+              </form>
+            </div>
+        <hr></hr>
+        <div id="section4" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+            <h1>상품Q&A</h1>
+            <div class="row">
+                <div class="col-25">
+                  <label for="subject">의견</label>
+                </div>
+                <div class="col-75">
+                  <textarea id="subject" name="subject" placeholder="의견을 말씀해주세요" style="height:200px"></textarea>
+                </div>
+              </div>
+            <button class="btn btn-success " type="무엇이든 물어보세요"> <a href="{% url 'success' %}">물어보기</a> </button>
+          </div>
+          <hr></hr>
 </body>
 
