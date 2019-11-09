@@ -1,7 +1,9 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V2</title>
+	<title>8T Shop/login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -23,12 +25,11 @@
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 <!--===============================================================================================-->
 </head>
 <body>
-	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -68,7 +69,7 @@
 							계정이 없나요?
 						</span>
 
-						<a class="txt2" href="{% url 'sign up' %}">
+						<a class="txt2" href="{% url 'signup' %}">
 							Sign Up
 						</a>
 					</div>
@@ -77,8 +78,6 @@
 		</div>
 	</div>
 	
-
-	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
