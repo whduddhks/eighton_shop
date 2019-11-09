@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="kr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Small Business - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/small-business.css' %}" rel="stylesheet">
+
+  
+
+</head>
+
+<body>
+  <div class="container">
+    <header class="blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <a class="text-muted" href="#">8T</a>
+        </div>
+        <div class="col-4 text-center">
+            <a href="{% url 'home' %}"><img src="{% static 'lion.png' %}" style="width:50px;height: 50px;"></a>
+          </div>
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            <a class="text-muted" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+            </a>
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              My Page
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item btn btn-sm btn-outline-secondary" href="{% url 'basket' %}">shopping basket</a>
+                  <a class="dropdown-item" href="{% url 'login' %}">Log out</a>
+          </div>
+      </div>
+    </header>
+
+
+    <div class="nav-scroller py-3 mb-1">
+      <nav class="nav d-flex justify-content-center">
+    <a class="p-2 text-muted" href="{% url 'pageone' %}">MAN</a>
+    <a class="p-2 text-muted" href="{% url 'pagetwo' %}">WOMAN</a>
+    <a class="p-2 text-muted" href="{% url 'pagethree' %}">BAGS</a>
+    <a class="p-2 text-muted" href="{% url 'pagefour' %}">ACC</a>
+    <a class="p-2 text-muted" href="{% url 'pagefive' %}">SALE</a>
+    <div class="dropdown">
+            <button style="border: none;" class="p-2 text-muted btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             SUBCULTURE
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item btn btn-sm btn-outline-secondary p-2 text-muted" href="https://likelion.net/">OFFICAL</a>
+                  <a class="p-2 text-muted dropdown-item" href="https://www.instagram.com/likelion.official/">INSTAGRAM</a>
+          </div>
+      </nav>
+    </div>
+    <hr></hr>
+  <!-- Page Content -->
+  
+  <div id="demo" class="carousel slide" data-ride="carousel" style="text-align: center; ">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+    
+    
+    
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+  
+
+
+    <div class="text-black my-5 py-4 text-center">
+        <p class="text-black m-10"> <strong>곧 갑니다</strong> </p>
+        <img src="{% static '트럭.jpg' %}" alt="#" width="500px" height="500px">
+    </div>
+
+    
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

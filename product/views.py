@@ -5,6 +5,44 @@ from django.http import Http404
 from .models import Product
 # from .models import User
 
+def home(request):
+    return render(request, 'index.html')
+
+def pageone(request):
+    return render(request, 'Pageone.html')
+
+def pagetwo(request):
+    return render(request, 'Pagetwo.html')
+
+def pagethree(request):
+    return render(request, 'Pagethree.html')
+
+def pagefour(request):
+    return render(request, 'Pagefour.html')
+
+def pagefive(request):
+    return render(request, 'Pagefive.html')
+
+def basket(request):
+    return render(request, 'basket.html')
+
+def pageonedetail(request):
+    return render(request, 'Page1_detail.html')
+
+def pagetwodetail(request):
+    return render(request, 'Page2_detail.html')
+
+def pagethreedetail(request):
+    return render(request, 'Page3_detail.html')
+
+def pagefourdetail(request):
+    return render(request, 'Page4_detail.html')
+
+def pagefivedetail(request):
+    return render(request, 'Page5_detail.html')
+
+def success(request):
+    return render(request, 'success.html')
 
 def product_list(request):
     if request.method == 'GET':

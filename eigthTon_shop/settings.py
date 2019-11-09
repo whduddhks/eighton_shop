@@ -123,6 +123,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'user', 'static'),
+    os.path.join(BASE_DIR, 'order', 'static'),
+    os.path.join(BASE_DIR, 'product', 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
